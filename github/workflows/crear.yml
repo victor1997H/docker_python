@@ -20,18 +20,23 @@ jobs:
         python-version: "3.12"
     - name: Install dependencies
       run: pip install -r requirements.txt
-    
-    - name: Ejecutar la app
-      run: python app.py
-    
+
+     
     - name: Test with pytest
       run: pytest
-
+  
+    
+    - name: Ejecutar la aplicación
+      run: python app.py
+   
     - name: Simular de deploy
-      run: echo "Desplegando aplicación..."
+      run: echo "Desplegando la aplicación..."
 
     - name: Construir imagen Docker
       run: docker build -t ghcr.io/victor1997H/hello-victor:1.0.0 .
 
     - name: Log in to GitHub Container Registry
       run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin 
+
+    - name: Publicar imagen Docker 
+      run: docker push ghcr.io/victor1997H/hello-victor:1.0.0  
