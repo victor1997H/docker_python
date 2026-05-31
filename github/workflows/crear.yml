@@ -1,4 +1,4 @@
-name: Build and Push Docker Image to GHCR
+name: Build and Push Docker Image
 
 on:
 push:
@@ -26,10 +26,8 @@ steps:
       password: ${{ secrets.GITHUB_TOKEN }}
 
   - name: Build Docker image
-    run: |
-      docker build -t ghcr.io/victor1997h/docker_python:latest .
+    run: docker build -t ghcr.io/victor1997h/docker_python:latest .
 
   - name: Push Docker image
-    run: |
-      docker push ghcr.io/victor1997h/docker_python:latest
+    run: docker push ghcr.io/victor1997h/docker_python:latest
 ```
